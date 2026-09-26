@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter, JetBrains_Mono, Unbounded } from "next/font/google";
 import "./globals.css";
+import JarvisFloating from "@/components/jarvis/JarvisFloating";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <SiteFooter />
+              <JarvisFloating />
       </body>
     </html>
   );
