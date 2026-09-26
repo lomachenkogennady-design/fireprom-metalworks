@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #090a0c;
+  --color-panel: #121418;
+  --color-panel2: #17191f;
+  --color-line: rgba(255, 255, 255, 0.075);
+  --color-accent: #ff5c1a;
+  --color-amber: #ffb454;
+  --color-steel: #8b94a3;
+  --color-ghost: #c6cdd8;
+  --color-ok: #4ade80;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-unbounded), system-ui, sans-serif;
+  --font-mono: var(--font-jbm), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-bg);
+}
+
+::selection {
+  background: rgba(255, 92, 26, 0.35);
+  color: #fff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2e36 transparent;
+}
+
+/* ---------- фоновая инженерная сетка ---------- */
+.app-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1100px 480px at 75% -10%, rgba(255, 92, 26, 0.09), transparent 62%),
+    radial-gradient(900px 420px at 0% 110%, rgba(255, 180, 84, 0.05), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.026) 1px, transparent 1px);
+  background-size: auto, auto, 44px 44px, 44px 44px;
+  mask-image: linear-gradient(180deg, black 0%, black 55%, transparent 100%);
+}
+
+/* ---------- типографика и утилиты ---------- */
+.micro {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-steel);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- панели ---------- */
+.panel {
+  position: relative;
+  background: linear-gradient(180deg, #14161b 0%, #0f1114 100%);
+  border: 1px solid var(--color-line);
+}
+
+.panel-pad {
+  padding: 20px;
+}
+
+.corner::before,
+.corner::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(255, 92, 26, 0.65);
+  border-style: solid;
+  pointer-events: none;
+}
+.corner::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.corner::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* ---------- поля ввода ---------- */
+.field {
+  width: 100%;
+  background: #0b0d10;
+  border: 1px solid var(--color-line);
+  color: #fff;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.4;
+  outline: none;
+  border-radius: 0;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.field:focus {
+  border-color: var(--color-accent);
+  background: #0e1013;
+}
+.field::placeholder {
+  color: #4b5260;
+}
+select.field option {
+  background: #12141a;
+  color: #fff;
+}
+input[type="number"].field::-webkit-outer-spin-button,
+input[type="number"].field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ---------- кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.16s ease;
+  user-select: none;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--color-accent);
+  color: #170902;
+}
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: 0 0 24px rgba(255, 92, 26, 0.35);
+}
+.btn-outline {
+  border-color: var(--color-line);
+  color: var(--color-ghost);
+  background: rgba(255, 255, 255, 0.02);
+}
+.btn-outline:hover:not(:disabled) {
+  border-color: rgba(255, 92, 26, 0.6);
+  color: #fff;
+}
+.btn-ghost {
+  color: var(--color-steel);
+  padding: 8px 10px;
+}
+.btn-ghost:hover:not(:disabled) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ---------- таблицы ---------- */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tbl th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-steel);
+  font-weight: 500;
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--color-line);
+}
+.tbl td {
+  padding: 9px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+  vertical-align: middle;
+}
+.tbl tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- чипы и теги ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--color-line);
+  color: var(--color-steel);
+}
+
+/* ---------- анимации ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.rise-1 { animation-delay: 0.05s; }
+.rise-2 { animation-delay: 0.12s; }
+.rise-3 { animation-delay: 0.19s; }
+.rise-4 { animation-delay: 0.26s; }
+
+@keyframes sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(220%); }
+}
+.sweep {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(255, 92, 26, 0.12), transparent);
+  animation: sweep 4.5s ease-in-out infinite;
+}
+
+/* ---------- печать КП ---------- */
+.print-root {
+  display: none;
+}
+@media print {
+  .app-shell,
+  .app-header,
+  .app-footer,
+  .app-bg {
+    display: none !important;
+  }
+  .print-root {
+    display: block !important;
+    background: #fff;
+    color: #111;
+    font-family: Arial, sans-serif;
+    padding: 24px 8px;
+  }
+  body {
+    background: #fff !important;
+  }
+}
