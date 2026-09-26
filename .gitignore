@@ -16,3 +16,8 @@ Thumbs.db
 .idea/
 *.swp
 *.cpuprofile
+tsconfig.tsbuildinfo
+src.bak_*
+*.bak
+*.cpuprofile
+build-*.cpuprofile
